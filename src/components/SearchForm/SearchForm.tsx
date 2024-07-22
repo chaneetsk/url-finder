@@ -57,13 +57,15 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
       <form onSubmit={onFormSubmit}>
         <TextField
           onChange={onChangeHandler}
-          textLabel="keywords"
+          textLabel="Enter Keywords"
+          textName="keywords"
           textValue={formData.keywords}
           placeholderText="Keywords"
         />
         <TextField
           onChange={onChangeHandler}
-          textLabel="url"
+          textLabel="Enter URL"
+          textName="url"
           textValue={formData.url}
           placeholderText="Url"
         />

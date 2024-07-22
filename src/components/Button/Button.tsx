@@ -1,4 +1,3 @@
-
 type ButtonType = {
     buttonText: string,
     buttonType: "submit" | "reset" | "button",

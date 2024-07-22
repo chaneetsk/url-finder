@@ -28,7 +28,6 @@ const ResultPane = ({results}:ResultPaneTypes) => {
                   )
                 }
               })
-          
             }
           </tbody>
         </table>
