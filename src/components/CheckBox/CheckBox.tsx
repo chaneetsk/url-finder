@@ -6,10 +6,12 @@ type CheckBoxTypes = {
 
 const CheckBox = ({ label, checked, onChange }: CheckBoxTypes)  => {
   return (
-    <label>
-      <input type="checkbox" checked={checked} onChange={onChange} />
-      {label}
-    </label>
+    <div className="mt-4 flex items-center text-gray-400">
+      <label>
+        <input type="checkbox" checked={checked} onChange={onChange} className="mr-2" />
+        {label}
+      </label>
+    </div>
   );
 };
 
