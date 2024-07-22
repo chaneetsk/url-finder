@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 
 import { FormDataTypes } from "../components/SearchForm/SearchForm"
@@ -14,7 +13,7 @@ const Home = () => {
 
   const onSubmit = async (formValue: FormDataTypes) => {
     const data = await fetchData({ keywords: formValue.keywords, urlToFind: formValue.url, searchEngine: formValue.searchEngine })
-    setResults(data)
+    setResults(data as Record<string, string[]>[])
   }
 
   return (

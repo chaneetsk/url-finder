@@ -20,12 +20,18 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
   const [checkboxes, setCheckboxes] = useState(
     searchEngine.map((item) => ({ label: item, checked: false }))
   )
+  const [showErr, setShowError] = useState(false)
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     // Ensure at least one search engine is selected and the URL is not empty
-    if(formData.searchEngine.length !== 0 && formData.url !== '') onSubmit(formData)
+    if(formData.searchEngine.length !== 0 && formData.url !== '') {
+      setShowError(false)
+      onSubmit(formData)
+    } else {
+      setShowError(true)
+    }
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,13 +57,13 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
       <form onSubmit={onFormSubmit}>
         <TextField
           onChange={onChangeHandler}
-          textLabel="Keywords"
+          textLabel="keywords"
           textValue={formData.keywords}
           placeholderText="Keywords"
         />
         <TextField
           onChange={onChangeHandler}
-          textLabel="URL"
+          textLabel="url"
           textValue={formData.url}
           placeholderText="Url"
         />
@@ -78,6 +84,12 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
           })
           }
         </div>
+        {
+          showErr &&
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+              <p>Empty fields: url and search engine</p>
+            </div>
+        }
       </form>
     </>
   )

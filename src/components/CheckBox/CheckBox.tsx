@@ -6,7 +6,7 @@ type CheckBoxTypes = {
 
 const CheckBox = ({ label, checked, onChange }: CheckBoxTypes)  => {
   return (
-    <div className="mt-4 flex items-center text-gray-400">
+    <div className="mt-2 flex text-gray-400">
       <label>
         <input type="checkbox" checked={checked} onChange={onChange} className="mr-2" />
         {label}
