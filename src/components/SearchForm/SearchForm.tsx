@@ -87,7 +87,7 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
         {
           showErr &&
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-              <p>Empty fields: url and search engine</p>
+              <p>Error: missing url and/or search engine</p>
             </div>
         }
       </form>

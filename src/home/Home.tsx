@@ -4,16 +4,17 @@ import { FormDataTypes } from "../components/SearchForm/SearchForm"
 import SearchForm from "../components/SearchForm/SearchForm"
 import { searchEngineUrls } from "../data/searchEngineUrls"
 import { useFetchResults } from "./useFetchResults"
+import ResultPane, { ResultTypes } from "../components/ResultPane/ResultPane"
 
 const Home = () => {
   const [urls] = useState(searchEngineUrls)
-  const [results, setResults] = useState<Record<string, string[]>[]>([])
+  const [results, setResults] = useState<ResultTypes>([])
 
   const { fetchData } = useFetchResults(urls);
 
   const onSubmit = async (formValue: FormDataTypes) => {
     const data = await fetchData({ keywords: formValue.keywords, urlToFind: formValue.url, searchEngine: formValue.searchEngine })
-    setResults(data as Record<string, string[]>[])
+    setResults(data as ResultTypes)
   }
 
   return (
@@ -23,20 +24,9 @@ const Home = () => {
         onSubmit={onSubmit}
         searchEngine={Object.keys(urls)}
       />
-      <section>
-        <p className="text-lg font-bold text-white">Results</p>
-        {
-          results.map((result) => {
-            for(const [key, value] of Object.entries(result)) {
-              return (
-                <p key={key}>
-                  <span>{key}</span>: <span>{value.flat()}</span>
-                </p>
-              )
-            }
-          })
-        }
-      </section>
+      <ResultPane
+        results={results}
+      />
     </>
   )
 }
