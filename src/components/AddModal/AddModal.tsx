@@ -46,8 +46,9 @@ const AddModal = ({show, onClose, updateUrls}:AddModalTypes) => {
       className="fixed inset-0 bg-gray-700 bg-opacity-70 flex items-start justify-center"
     >   
       <div
-        data-testId="overlay"
-        className="fixed left-0 right-0 top-0 bottom-0 -z-10"
+        data-testid="overlay"
+        className="fixed left-0 right-0 top-0 bottom-0"
+        style={{ zIndex: -1 }}
         onClick={handleOnClose}
         tabIndex={0}
       />

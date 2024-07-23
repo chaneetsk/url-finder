@@ -24,8 +24,8 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
 
   // update checkboxes when a new search engine is added
   useEffect(() => {
-    setCheckboxes(searchEngine.map((item) => ({ label: item, checked: false })));
-  }, [searchEngine]);
+    setCheckboxes(searchEngine.map((item) => ({ label: item, checked: false })))
+  }, [searchEngine])
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -74,10 +74,6 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
           textValue={formData.url}
           placeholderText="Url"
         />
-        <Button
-          buttonText="submit"
-          buttonType="submit"
-        />
         <div>
           {checkboxes.map((checkbox) => {
             return (
@@ -91,6 +87,10 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
           })
           }
         </div>
+        <Button
+          buttonText="submit"
+          buttonType="submit"
+        />
         {
           showErr &&
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">

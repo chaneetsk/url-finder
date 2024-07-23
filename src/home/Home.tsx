@@ -12,7 +12,7 @@ const Home = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [results, setResults] = useState<ResultTypes>([])
 
-  const { fetchData } = useFetchResults(urls);
+  const { fetchData } = useFetchResults(urls)
 
   const updateUrls = (formData: AddFormDataType) => {
     setUrls((prevValue) => {
@@ -35,13 +35,8 @@ const Home = () => {
           searchEngine={Object.keys(urls)}
         />
       </div>
-      <AddModal
-        show={isAddModalOpen}
-        updateUrls={updateUrls}
-        onClose={() => setIsAddModalOpen(!isAddModalOpen)}
-      />
       <button
-        className="absolute bottom-28 right-2 flex items-center justify-center bg-blue-500 text-white
+        className="absolute bottom-52 right-8 flex items-center justify-center bg-blue-500 text-white
           w-10 h-10 rounded-full hover:bg-blue-700"
         onClick={() => setIsAddModalOpen(!isAddModalOpen)}
         role="button"
@@ -49,6 +44,11 @@ const Home = () => {
       >
         +
       </button>
+      <AddModal
+        show={isAddModalOpen}
+        updateUrls={updateUrls}
+        onClose={() => setIsAddModalOpen(!isAddModalOpen)}
+      />
       <ResultPane
         results={results}
       />
