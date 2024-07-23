@@ -15,8 +15,10 @@ type SearchFormTypes = {
   searchEngine: string[]
 }
 
+const initialValue:FormDataTypes = { keywords: '', url: 'https://www.infotrack.com.au', searchEngine: [] }
+
 const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
-  const [formData, setFormData] = useState<FormDataTypes>({ keywords: '', url: 'www.infotrack.com.au', searchEngine: [] })
+  const [formData, setFormData] = useState<FormDataTypes>(initialValue)
   const [checkboxes, setCheckboxes] = useState(
     searchEngine.map((item) => ({ label: item, checked: false }))
   )
@@ -34,6 +36,7 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
     if(formData.searchEngine.length !== 0 && formData.url !== '') {
       setShowError(false)
       onSubmit(formData)
+      setFormData(initialValue)
     } else {
       setShowError(true)
     }
@@ -73,6 +76,7 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
           textName="url"
           textValue={formData.url}
           placeholderText="Url"
+          inputType="url"
         />
         <div>
           {checkboxes.map((checkbox) => {
@@ -93,7 +97,7 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
         />
         {
           showErr &&
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            <div className="bg-red-100 border border-red-400 text-red-700 mt-2 px-4 py-3 rounded relative">
               <p>Error: missing url and/or search engine</p>
             </div>
         }

@@ -5,13 +5,15 @@ type traverseSearchResultsTypes = {
 }
 
 export const traverseSearchResults = ({doms, urlToFind, searchEngine}: traverseSearchResultsTypes): string[] => {
-  let noOfResult = 0;
+  let noOfResult = 0
   const results: string[] = []
 
   // Map to CSS selectors for different search engines
   const searchEngineClassMap = new Map([
     ['google','.g'],
-    ['bing', '.b_algo']
+    ['bing', '.b_algo'],
+    ['yahoo', '.dd.algo'],
+    ['duckduckgo', '.wLL07_0Xnd1QZpzpfR4W']
   ])
 
   const searchEngineClass = searchEngineClassMap.get(searchEngine)

@@ -24,7 +24,7 @@ export const useFetchResults = (urlsObj: urlsType) => {
     try{
       const fetchPromises = urls.map(async(url) => {
         const result = await fetcher(url)
-        return result;
+        return result
       })
       return await Promise.all(fetchPromises)
     }catch(e){
@@ -33,17 +33,28 @@ export const useFetchResults = (urlsObj: urlsType) => {
     }
   }
 
-  const fetchData = async ({urlToFind, searchEngine}: fetchDataTypes) => {
+  const fetchData = async ({keywords = '', urlToFind, searchEngine}: fetchDataTypes) => {
     let results:Record<string, string[]>[] = []
 
     try {
       // Iterate through each selected search engine
       for(const sE of searchEngine) {
         const url = getUrlOfSearchEngine(urlsObj, sE)
+        let urlsWithPages:string[] = []
 
-        // Since we are only interested in the first 50 results,
-        // Generating only first 5 pages.
-        const urlsWithPages = urlGenerator(url, MAX_PAGES)
+        // For the test static web pages are being used
+        // Since we are only interested in the first 50 results, generate only first 5 pages
+        // Generate static pages for only 'https://infotrack-tests.infotrack.com.au/'
+        if(url.includes('infotrack-tests.infotrack.com.au')) {
+          urlsWithPages = urlGenerator(url, MAX_PAGES)
+        } else {
+          // Do not generate any static pages
+          const newUrl = new URL(url)
+          const params = new URLSearchParams({ q: keywords })
+          newUrl.search = params.toString()
+          urlsWithPages.push(newUrl.toString())
+        }
+
         const htmlPageArray = await fetchFromUrlsConcurrently(urlsWithPages)
 
         // Parse the html string

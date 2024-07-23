@@ -4,12 +4,12 @@ import '@testing-library/jest-dom'
 import SearchForm from './SearchForm'
 
 describe('SearchForm Component', () => {
-  const mockOnSubmit = vi.fn();
-  const searchEngines = ['google', 'bing'];
+  const mockOnSubmit = vi.fn()
+  const searchEngines = ['google', 'bing']
 
   beforeEach(() => {
-    render(<SearchForm onSubmit={mockOnSubmit} searchEngine={searchEngines} />);
-  });
+    render(<SearchForm onSubmit={mockOnSubmit} searchEngine={searchEngines} />)
+  })
 
   it('should render the form elements', () => {
     expect(screen.getByLabelText('Enter Keywords')).toBeInTheDocument()
@@ -30,13 +30,13 @@ describe('SearchForm Component', () => {
 
   it('should submit the form data correctly', () => {
     fireEvent.change(screen.getByLabelText('Enter Keywords'), { target: { value: 'test' } })
-    fireEvent.change(screen.getByLabelText('Enter URL'), { target: { value: 'www.test.com' } })
+    fireEvent.change(screen.getByLabelText('Enter URL'), { target: { value: 'https://www.test.com' } })
     fireEvent.click(screen.getByLabelText('google'))
     fireEvent.click(screen.getByText('submit'))
 
     expect(mockOnSubmit).toHaveBeenCalledWith({
       keywords: 'test',
-      url: 'www.test.com',
+      url: 'https://www.test.com',
       searchEngine: ['google']
     })
   })

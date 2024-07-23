@@ -74,6 +74,7 @@ const AddModal = ({show, onClose, updateUrls}:AddModalTypes) => {
               textValue={formData.url}
               required={true}
               placeholderText="Url"
+              inputType="url"
             />
             <Button
               buttonText="Add"

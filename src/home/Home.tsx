@@ -36,7 +36,7 @@ const Home = () => {
         />
       </div>
       <button
-        className="absolute bottom-52 right-8 flex items-center justify-center bg-blue-500 text-white
+        className="absolute top-60 right-8 flex items-center justify-center bg-blue-500 text-white
           w-10 h-10 rounded-full hover:bg-blue-700"
         onClick={() => setIsAddModalOpen(!isAddModalOpen)}
         role="button"
