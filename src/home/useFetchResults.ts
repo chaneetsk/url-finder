@@ -3,6 +3,7 @@ import fetcher from "../fetcher/fetcher"
 import { urlGenerator } from "../utls/urlGenerator"
 import { domParser } from "../utls/domParser"
 import { traverseSearchResults } from "../utls/traverseSearchResults"
+import { useState } from "react"
 
 const MAX_PAGES = 5
 
@@ -19,6 +20,7 @@ type urlsType = {
 // Custom hook to fetch page concurrently form url with pages
 // The response is then passed through the dom parser
 export const useFetchResults = (urlsObj: urlsType) => {
+  const [error, setError] = useState('')
 
   const fetchFromUrlsConcurrently = async (urls: string[]) => {
     try{
@@ -69,12 +71,14 @@ export const useFetchResults = (urlsObj: urlsType) => {
       return results
     } catch (e) {
       console.error(e)
+      setError('Error Fetching Request')
       results = []
     }
   }
 
   return {
-    fetchData
+    fetchData,
+    error
   }
 }
 

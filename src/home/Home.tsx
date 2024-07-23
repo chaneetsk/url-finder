@@ -12,7 +12,7 @@ const Home = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [results, setResults] = useState<ResultTypes>([])
 
-  const { fetchData } = useFetchResults(urls)
+  const { fetchData, error } = useFetchResults(urls)
 
   const updateUrls = (formData: AddFormDataType) => {
     setUrls((prevValue) => {
@@ -52,6 +52,7 @@ const Home = () => {
       <ResultPane
         results={results}
       />
+      <div className="text-red-500">{error}</div>
     </section>
   )
 }
