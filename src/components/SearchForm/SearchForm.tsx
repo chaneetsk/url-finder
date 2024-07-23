@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import Button from "../Button/Button"
 import TextField from "../TextField/TextField"
@@ -21,6 +21,11 @@ const SearchForm = ({ onSubmit, searchEngine }: SearchFormTypes) => {
     searchEngine.map((item) => ({ label: item, checked: false }))
   )
   const [showErr, setShowError] = useState(false)
+
+  // update checkboxes when a new search engine is added
+  useEffect(() => {
+    setCheckboxes(searchEngine.map((item) => ({ label: item, checked: false })));
+  }, [searchEngine]);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

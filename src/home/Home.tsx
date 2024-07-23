@@ -5,7 +5,7 @@ import SearchForm from "../components/SearchForm/SearchForm"
 import { searchEngineUrls } from "../data/searchEngineUrls"
 import { useFetchResults } from "./useFetchResults"
 import ResultPane, { ResultTypes } from "../components/ResultPane/ResultPane"
-import AddModal from "../components/AddModal/AddModal"
+import AddModal, { AddFormDataType } from "../components/AddModal/AddModal"
 
 const Home = () => {
   const [urls, setUrls] = useState(searchEngineUrls)
@@ -13,6 +13,13 @@ const Home = () => {
   const [results, setResults] = useState<ResultTypes>([])
 
   const { fetchData } = useFetchResults(urls);
+
+  const updateUrls = (formData: AddFormDataType) => {
+    setUrls((prevValue) => {
+      const { newSearchEngine, url } = formData
+      return { ...prevValue, [newSearchEngine]: url }
+    })
+  }
 
   const onSubmit = async (formValue: FormDataTypes) => {
     const data = await fetchData({ keywords: formValue.keywords, urlToFind: formValue.url, searchEngine: formValue.searchEngine })
@@ -30,7 +37,7 @@ const Home = () => {
       </div>
       <AddModal
         show={isAddModalOpen}
-        setUrls={setUrls}
+        updateUrls={updateUrls}
         onClose={() => setIsAddModalOpen(!isAddModalOpen)}
       />
       <button

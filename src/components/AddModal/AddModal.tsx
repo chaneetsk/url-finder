@@ -3,16 +3,21 @@ import { useState } from "react"
 import TextField from "../TextField/TextField"
 import Button from "../Button/Button"
 
+export type AddFormDataType = {
+  newSearchEngine: string,
+  url: string
+}
+
 type AddModalTypes = {
     show: boolean,
     onClose: () => void,
-    setUrls: React.Dispatch<React.SetStateAction<{[key: string]: string}>>
+    updateUrls: (formData: AddFormDataType) => void
 }
 
 const initValue = { newSearchEngine: '', url: '' }
 
-const AddModal = ({show, onClose, setUrls}:AddModalTypes) => {
-  const [formData, setFormData] = useState(initValue)
+const AddModal = ({show, onClose, updateUrls}:AddModalTypes) => {
+  const [formData, setFormData] = useState<AddFormDataType>(initValue)
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target
@@ -23,10 +28,7 @@ const AddModal = ({show, onClose, setUrls}:AddModalTypes) => {
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setUrls((prevValue) => {
-      const { newSearchEngine, url } = formData
-      return { ...prevValue, [newSearchEngine]: url }
-    })
+    updateUrls(formData)
     handleOnClose()
   }
 
@@ -44,6 +46,7 @@ const AddModal = ({show, onClose, setUrls}:AddModalTypes) => {
       className="fixed inset-0 bg-gray-700 bg-opacity-70 flex items-start justify-center"
     >   
       <div
+        data-testId="overlay"
         className="fixed left-0 right-0 top-0 bottom-0 -z-10"
         onClick={handleOnClose}
         tabIndex={0}
@@ -51,7 +54,10 @@ const AddModal = ({show, onClose, setUrls}:AddModalTypes) => {
       <div className="bg-gray-500 mt-12 p-6 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-xl font-bold mb-4">Add Search Engine</h2>
         <div className="modal-content">
-          <form onSubmit={onSubmitForm}>
+          <form
+            onSubmit={onSubmitForm}
+            role="form"
+          >
             <TextField
               onChange={onChangeHandler}
               textLabel=""

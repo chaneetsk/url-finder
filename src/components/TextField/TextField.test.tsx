@@ -6,7 +6,7 @@ import TextField from './TextField'
 describe('TextField component', () => {
   const handleChange = vi.fn()
   beforeEach(() => {
-    render(<TextField textLabel="Name" textValue="Test" placeholderText="test" onChange={handleChange} />)
+    render(<TextField textLabel="Name" textName="Test" textValue="Test" placeholderText="test" onChange={handleChange} />)
   })
 
   it('should render the TextField with correct label', () => {

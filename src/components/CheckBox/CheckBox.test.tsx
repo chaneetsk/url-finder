@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import '@testing-library/jest-dom'
 import CheckBox from './CheckBox'
 
 describe('CheckBox component', () => {
@@ -26,12 +25,12 @@ describe('CheckBox component', () => {
   })
 
   it('should call onChange when checkbox is clicked', () => {
-    const handleChange = vi.fn()
-    render(<CheckBox label="google" checked={false} onChange={handleChange} />)
+    const handleChangeMock = vi.fn()
+    render(<CheckBox label="google" checked={false} onChange={handleChangeMock} />)
     
     const checkbox = screen.getByRole('checkbox')
     fireEvent.click(checkbox)
     
-    expect(handleChange).toHaveBeenCalledTimes(1)
+    expect(handleChangeMock).toHaveBeenCalledTimes(1)
   })
 })
