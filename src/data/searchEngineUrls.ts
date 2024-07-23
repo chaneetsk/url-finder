@@ -2,7 +2,10 @@
 type searchEnginerUrlTypes = {
   [key: string]: string
 }
+
+// itgoogle: Info Track Google
+// itbing: Info Track Bing
 export const searchEngineUrls: searchEnginerUrlTypes = {
-  google: 'https://infotrack-tests.infotrack.com.au/Google/',
-  bing: 'https://infotrack-tests.infotrack.com.au/Bing/'
+  itgoogle: 'https://infotrack-tests.infotrack.com.au/Google/',
+  itbing: 'https://infotrack-tests.infotrack.com.au/Bing/'
 }

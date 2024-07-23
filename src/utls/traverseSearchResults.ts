@@ -9,7 +9,11 @@ export const traverseSearchResults = ({doms, urlToFind, searchEngine}: traverseS
   const results: string[] = []
 
   // Map to CSS selectors for different search engines
+  // itgoogle: Info Track Google
+  // itbing: Info Track Bing
   const searchEngineClassMap = new Map([
+    ['itgoogle','.g'],
+    ['itbing', '.b_algo'],
     ['google','.g'],
     ['bing', '.b_algo'],
     ['yahoo', '.dd.algo'],

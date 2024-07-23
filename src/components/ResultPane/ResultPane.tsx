@@ -23,7 +23,7 @@ const ResultPane = ({results}:ResultPaneTypes) => {
                   return (
                     <tr key={key}>
                       <td>{key}</td>
-                      <td>{value.flat()}</td>
+                      <td>{value.join(', ')}</td>
                     </tr>
                   )
                 }

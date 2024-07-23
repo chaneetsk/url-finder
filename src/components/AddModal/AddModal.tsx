@@ -65,7 +65,7 @@ const AddModal = ({show, onClose, updateUrls}:AddModalTypes) => {
               textName="newSearchEngine"
               textValue={formData.newSearchEngine}
               required={true}
-              placeholderText="Keywords"
+              placeholderText="Search Engine"
             />
             <TextField
               onChange={onChangeHandler}

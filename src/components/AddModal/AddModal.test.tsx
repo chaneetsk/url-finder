@@ -32,7 +32,7 @@ describe('AddModal Component', () => {
   it('should update formData on input change', () => {
     setup(true)
 
-    const searchEngineInput = screen.getByPlaceholderText('Keywords')
+    const searchEngineInput = screen.getByPlaceholderText('Search Engine')
     const urlInput = screen.getByPlaceholderText('Url')
 
     fireEvent.change(searchEngineInput, { target: { value: 'Test' } })
@@ -45,7 +45,7 @@ describe('AddModal Component', () => {
   it('should call updateUrls and onClose on form submit', () => {
     setup(true)
 
-    const searchEngineInput = screen.getByPlaceholderText('Keywords')
+    const searchEngineInput = screen.getByPlaceholderText('Search Engine')
     const urlInput = screen.getByPlaceholderText('Url')
     const form = screen.getByRole('form')
 
