@@ -5,8 +5,14 @@
  */
 
 const fetcher = async (url: string):Promise<string> => {
+
+  const headers = {
+    'method': 'GET',
+    'ContentType': 'application/json'
+  }
+
   try {
-    const response = await fetch(url)
+    const response = await fetch(url, headers)
 
     if(!response.ok) {
       throw new Error(`Error fetching from ${url}: ${response.status}`)

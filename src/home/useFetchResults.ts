@@ -5,7 +5,8 @@ import { domParser } from "../utls/domParser"
 import { traverseSearchResults } from "../utls/traverseSearchResults"
 import { useState } from "react"
 
-const MAX_PAGES = 5
+const MAX_PAGES: number = 5
+const INFO_TRACK_TEST_WEBSITE: string = 'infotrack-tests.infotrack.com.au'
 
 type fetchDataTypes = {
     keywords?: string,
@@ -13,9 +14,7 @@ type fetchDataTypes = {
     searchEngine: string[]
 }
 
-type urlsType = {
-    [key: string]: string
-}
+type urlsType = Record<string, string>
 
 // Custom hook to fetch page concurrently form url with pages
 // The response is then passed through the dom parser
@@ -44,10 +43,10 @@ export const useFetchResults = (urlsObj: urlsType) => {
         const url = getUrlOfSearchEngine(urlsObj, sE)
         let urlsWithPages:string[] = []
 
-        // For the test static web pages are being used
+        // The test static web pages are being used
         // Since we are only interested in the first 50 results, generate only first 5 pages
         // Generate static pages for only 'https://infotrack-tests.infotrack.com.au/'
-        if(url.includes('infotrack-tests.infotrack.com.au')) {
+        if(url.includes(INFO_TRACK_TEST_WEBSITE)) {
           urlsWithPages = urlGenerator(url, MAX_PAGES)
         } else {
           // Do not generate any static pages
@@ -86,4 +85,3 @@ export const useFetchResults = (urlsObj: urlsType) => {
 const getUrlOfSearchEngine = (urlsObj: urlsType, searchEngine: string) => {
   return urlsObj[searchEngine]
 }
-
